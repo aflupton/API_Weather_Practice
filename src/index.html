@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="weather-interface.js"></script>
+    <title>API Practice</title>
+  </head>
+  <body>
+    <div class="container">
+
+      <div id="weatherSearch">
+        <h1 class="display-4">Get Weather Conditions From Anywhere</h1>
+        <h3><a href="https://openweathermap.org/" class="btn">OpenWeatherMap.org</a></h3>
+        <label for="location">Enter a location:</label>
+        <input id="location" type="text">
+        <button type="submit" class="btn-success" id="weatherForm">Get Current Weather</button>
+        <hr>
+        <div class="errors"></div>
+        <div class="showHumidity"></div>
+        <div class="showTemp"></div>
+        <div class="showPressure"></div>
+        <div class="showWindSpeed"></div>
+      </div>
+
+      <div id="bikeSearch">
+        <h1 class="display-4">Show Stolen Bikes</h1>
+        <h3><a href="https://bikeindex.org/documentation/api_v3?access_token=637cc6d637ad35517e88d669edd07617ac60088e521f83fb91a6ad1b0037f6ff#!/search/GET_version_search_format_get_0" class="btn">BikeIndex.org</a></h3>
+        <label for="bikeCity">Enter a location:</label>
+        <input type="text" id="bikeCity">
+        <button type="submit" class="btn-success"  id="bikeForm">Get List of Stolen Bikes</button>
+        <hr>
+        <div class="showBikes"></div>
+      </div>
+
+    </div>
+  </body>
+</html>
