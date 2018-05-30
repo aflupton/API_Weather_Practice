@@ -40,5 +40,9 @@
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aflupton/API_Weather_Practice.git"
   }
 }
