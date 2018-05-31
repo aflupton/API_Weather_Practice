@@ -14,7 +14,6 @@
         <input id="location" type="text">
         <button type="submit" class="btn-success" id="weatherForm">Get Current Weather</button>
         <hr>
-        <div class="errors"></div>
         <div class="showHumidity"></div>
         <div class="showTemp"></div>
         <div class="showPressure"></div>
@@ -23,12 +22,42 @@
 
       <div id="bikeSearch">
         <h1 class="display-4">Show Stolen Bikes</h1>
+
         <h3><a href="https://bikeindex.org/documentation/api_v3?access_token=637cc6d637ad35517e88d669edd07617ac60088e521f83fb91a6ad1b0037f6ff#!/search/GET_version_search_format_get_0" class="btn">BikeIndex.org</a></h3>
+
         <label for="bikeCity">Enter a location:</label>
         <input type="text" id="bikeCity">
-        <button type="submit" class="btn-success"  id="bikeForm">Get List of Stolen Bikes</button>
+        <label for="bikeManufacturer">Enter a manufacturer:</label>
+        <input type="text" id="bikeManufacturer">
+        <button type="submit" class="btn-success" id="bikeForm">Get List of Stolen Bikes</button>
+        <button id="refresh"class="btn-success"type="button" name="button">Refresh</button>
         <hr>
-        <div class="showBikes"></div>
+        <div id="resultsDiv">
+          <h3 id="showHeader"></h3>
+          <ul id="showBikes">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <td>Listing Title</td>
+                  <td>Serial #</td>
+                  <td>Manufacturer</td>
+                  <td>Location Stolen</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th id="bikeId"></th>
+                  <td id="bikeListing"></td>
+                  <td id="bikeSerial"></td>
+                  <td id="bikeManufacturer"></td>
+                  <td id="bikeLocationStolen"></td>
+                </tr>
+              </tbody>
+            </table>
+          </ul>
+
+        </div>
       </div>
 
     </div>
