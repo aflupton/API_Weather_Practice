@@ -31,7 +31,8 @@ $(document).ready(function() {
   //     $('.showWindSpeed').text(`The wind speed is ${response.wind.speed} mph.`);
   //   }
   // });
-  $('#errors').hide();
+  $('#statusErrors').hide();
+  $('#postErrors').hide();
   $('#resultsTable').hide();
   $('#bikeForm').click(function(event) {
     event.preventDefault();
@@ -48,12 +49,15 @@ $(document).ready(function() {
     // instantiate new xml request
     let request = new XMLHttpRequest();
     // store api url in a variable
-    let url = `https://bikeindex.org:443/api/v3/search?page=1&per_page=50&manufacturer=${manufacturer}&location=${city}&distance=10&stolenness=proximity&access_token=${process.env.BIKE_KEY}`;
+    let url = `https://bikeindex.org:443/api/v3/search?page=1&per_page=50&manufacturer=${manufacturer}&location=${city}&distance=10&stolenness=proximity&access_token=dbdc18487f5234331288c637df0c49673f6c82a78fbff35e5bcbe418f088a462`;
     // check request
     request.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         let response = JSON.parse(this.responseText);
         getElements(response);
+      } else if (this.readyState == 4 && this.status != 200) {
+        $('#statusErrors').show();
+        $('#statusErrors').text('Your request returned a status error, refresh and try again.');
       }
     }
 
@@ -63,13 +67,18 @@ $(document).ready(function() {
     request.send();
     // append results to html page
     let getElements = function(response) {
-      // show header
-      $('#showHeader').text(`Showing ${manufacturer} bikes from ${city}:`);
-      $('#resultsTable').show();
-      // return api data
-      for(let i=0; i<response.bikes.length; i++) {
-        let date = new Date(`${response.bikes[i].date_stolen}`*1000);
-        $('#showBikes').append(`<tr><th>${response.bikes[i].id}</th><br><td>${response.bikes[i].title}</td><br><td>${response.bikes[i].serial}</td><br><td>${response.bikes[i].manufacturer_name}</td><br><td>${response.bikes[i].frame_colors}</td><br><td>${response.bikes[i].stolen_location}</td><br><td>${date}</td></tr>`);
+      if (city != "" || manufacturer != "") {
+        // show header
+        $('#showHeader').text(`Showing ${manufacturer} bikes from ${city}:`);
+        $('#resultsTable').show();
+        // return api data
+        for(let i=0; i<response.bikes.length; i++) {
+          let date = new Date(`${response.bikes[i].date_stolen}`*1000);
+          $('#showBikes').append(`<tr><th>${response.bikes[i].id}</th><br><td>${response.bikes[i].title}</td><br><td>${response.bikes[i].serial}</td><br><td>${response.bikes[i].manufacturer_name}</td><br><td>${response.bikes[i].frame_colors}</td><br><td>${response.bikes[i].stolen_location}</td><br><td>${date}</td></tr>`);
+        }
+      } else {
+        $('#postErrors').show();
+        $('#postErrors').text("Invalid input(s), refresh and try again.");
       }
     }
   });
